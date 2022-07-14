@@ -31,9 +31,10 @@ class PwnedAPI():
         hashes = []
         counts = []
         for item in res.text.split('\r\n'):
-            (partialhash, count) = item.split(':')
-            hashes.append(prefix + partialhash)
-            counts.append(int(count))
+            if item != '':
+                (partialhash, count) = item.split(':')
+                hashes.append(prefix + partialhash)
+                counts.append(int(count.replace(',', '')))
         return (hashes, counts)
 
 
